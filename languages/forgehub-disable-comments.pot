@@ -1,0 +1,7 @@
+# ForgeHub Disable Comments
+msgid ""
+msgstr ""
+"Project-Id-Version: ForgeHub Disable Comments 1.0.0
+"
+"Content-Type: text/plain; charset=UTF-8
+"
