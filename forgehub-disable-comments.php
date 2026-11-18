@@ -3,7 +3,7 @@
  * Plugin Name:       ForgeHub Disable Comments
  * Plugin URI:        https://wpforgehub.com/product/disable-comments/
  * Description:       Turn off comments, pingbacks and trackbacks site-wide or per post type, and hide comment menus, admin bar items and comment feeds.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            WPForgeHub
  * Author URI:        https://wpforgehub.com
  * License:           GPLv2 or later
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WPFH_DSC_VERSION', '1.0.0' );
+define( 'WPFH_DSC_VERSION', '1.0.1' );
 define( 'WPFH_DSC_FILE', __FILE__ );
 define( 'WPFH_DSC_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WPFH_DSC_URL', plugin_dir_url( __FILE__ ) );
@@ -31,13 +31,14 @@ if ( ! function_exists( 'wpfh_dsc_fs' ) ) {
 		global $wpfh_dsc_fs;
 
 		if ( ! isset( $wpfh_dsc_fs ) ) {
-			if ( file_exists( WPFH_DSC_PATH . 'freemius/start.php' ) ) {
+			$fs_product_id = '0'; // TODO: set the real Freemius Product ID + public key; the SDK must not init with placeholders (fatal).
+			if ( '0' !== $fs_product_id && file_exists( WPFH_DSC_PATH . 'freemius/start.php' ) ) {
 				require_once WPFH_DSC_PATH . 'freemius/start.php';
 			}
 
-			if ( function_exists( 'fs_dynamic_init' ) ) {
+			if ( '0' !== $fs_product_id && function_exists( 'fs_dynamic_init' ) ) {
 				$wpfh_dsc_fs = fs_dynamic_init( array(
-					'id'             => '0', // TODO: Freemius Product ID.
+					'id'             => $fs_product_id,
 					'slug'           => 'forgehub-disable-comments',
 					'type'           => 'plugin',
 					'public_key'     => 'pk_TODO',

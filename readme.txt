@@ -4,7 +4,7 @@ Tags: disable comments, comments, pingbacks, trackbacks, spam
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,6 +53,9 @@ Yes, settings are per site.
 1. Settings page.
 
 == Changelog ==
+
+= 1.0.1 =
+* Fix: Freemius SDK is no longer initialised with placeholder product keys (fatal on Pro activation).
 
 = 1.0.0 =
 * Initial release.
