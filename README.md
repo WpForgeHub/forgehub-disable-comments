@@ -2,7 +2,7 @@
 
 ![Banner](assets/banner-1544x500.png)
 
-![Version](https://img.shields.io/badge/version-1.0.1-blue)
+![Version](https://img.shields.io/badge/version-1.0.2-blue)
 ![License](https://img.shields.io/badge/license-GPLv2%2B-green)
 ![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple)
 ![WP](https://img.shields.io/badge/WP-6.0%2B-blue)

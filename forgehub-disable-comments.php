@@ -3,7 +3,7 @@
  * Plugin Name:       ForgeHub Disable Comments
  * Plugin URI:        https://wpforgehub.com/product/disable-comments/
  * Description:       Turn off comments, pingbacks and trackbacks site-wide or per post type, and hide comment menus, admin bar items and comment feeds.
- * Version:           1.0.1
+ * Version:           1.0.2
  * Author:            WPForgeHub
  * Author URI:        https://wpforgehub.com
  * License:           GPLv2 or later
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WPFH_DSC_VERSION', '1.0.1' );
+define( 'WPFH_DSC_VERSION', '1.0.2' );
 define( 'WPFH_DSC_FILE', __FILE__ );
 define( 'WPFH_DSC_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WPFH_DSC_URL', plugin_dir_url( __FILE__ ) );
