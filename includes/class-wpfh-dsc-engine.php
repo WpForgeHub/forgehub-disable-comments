@@ -25,7 +25,7 @@ class WPFH_DSC_Engine {
 		add_filter( 'comments_open', array( $this, 'filter_open' ), 20, 2 );
 		add_filter( 'pings_open', array( $this, 'filter_open' ), 20, 2 );
 		add_filter( 'comments_array', array( $this, 'filter_comments_array' ), 20, 2 );
-		add_filter( 'feed_links_show_comments_feed', '__return_false' );
+		add_filter( 'feed_links_show_comments_feed', array( $this, 'filter_comments_feed_link' ) );
 		add_action( 'template_redirect', array( $this, 'kill_comment_feed' ), 1 );
 		add_action( 'admin_menu', array( $this, 'hide_menu' ), 999 );
 		add_action( 'admin_bar_menu', array( $this, 'hide_admin_bar' ), 999 );
@@ -132,8 +132,17 @@ class WPFH_DSC_Engine {
 		return $endpoints;
 	}
 
+	public function filter_comments_feed_link( $show ) {
+		if ( $this->hide_ui_everywhere() ) {
+			return false;
+		}
+		return $show;
+	}
+
 	public function filter_xmlrpc( $methods ) {
-		unset( $methods['pingback.ping'], $methods['pingback.extensions.getPingbacks'] );
+		if ( 'all' === wpfh_dsc_get_settings()['mode'] && $this->active_for_current_user() ) {
+			unset( $methods['pingback.ping'], $methods['pingback.extensions.getPingbacks'] );
+		}
 		return $methods;
 	}
 }

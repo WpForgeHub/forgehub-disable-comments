@@ -56,10 +56,10 @@ class WPFH_DSC_Pro {
 		?>
 		<hr>
 		<h2><?php esc_html_e( 'Delete existing comments', 'forgehub-disable-comments' ); ?></h2>
-		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" onsubmit="return confirm('<?php echo esc_js( __( 'Permanently delete matching comments? This action cannot be undone. WooCommerce order notes and system logs will NOT be touched.', 'forgehub-disable-comments' ) ); ?>');">
 			<input type="hidden" name="action" value="wpfh_dsc_bulk_delete">
 			<?php wp_nonce_field( 'wpfh_dsc_bulk_delete', 'wpfh_dsc_nonce' ); ?>
-			<p><?php esc_html_e( 'Permanently deletes comments. This cannot be undone.', 'forgehub-disable-comments' ); ?></p>
+			<p><?php esc_html_e( 'Permanently deletes standard WordPress comments, pingbacks, and trackbacks. WooCommerce order notes and Action Scheduler logs are preserved. This cannot be undone.', 'forgehub-disable-comments' ); ?></p>
 			<select name="scope">
 				<option value="all"><?php esc_html_e( 'All comments', 'forgehub-disable-comments' ); ?></option>
 				<option value="junk"><?php esc_html_e( 'Spam and trash only', 'forgehub-disable-comments' ); ?></option>
@@ -88,11 +88,23 @@ class WPFH_DSC_Pro {
 		$count  = 0;
 
 		do {
-			$ids = get_comments( array( 'fields' => 'ids', 'number' => 500, 'status' => $status ) );
+			$ids = get_comments(
+				array(
+					'fields'   => 'ids',
+					'number'   => 500,
+					'status'   => $status,
+					'type__in' => array( 'comment', 'pingback', 'trackback' ),
+				)
+			);
+			$deleted_in_batch = 0;
 			foreach ( $ids as $id ) {
 				if ( wp_delete_comment( (int) $id, true ) ) {
 					++$count;
+					++$deleted_in_batch;
 				}
+			}
+			if ( 0 === $deleted_in_batch ) {
+				break;
 			}
 		} while ( ! empty( $ids ) && $count < 100000 );
 
