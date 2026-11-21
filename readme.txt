@@ -4,7 +4,7 @@ Tags: disable comments, comments, pingbacks, trackbacks, spam
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,6 +53,9 @@ Yes, settings are per site.
 1. Settings page.
 
 == Changelog ==
+
+= 1.0.3 =
+* Connect live Freemius Product ID and public key for Pro licensing and automatic updates.
 
 = 1.0.2 =
 * Restrict Pro bulk delete to comment/pingback/trackback types with confirmation & loop guard; scope RSS/XML-RPC to configured post types.
