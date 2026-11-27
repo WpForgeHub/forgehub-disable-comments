@@ -23,3 +23,19 @@ Disable comments, pingbacks and trackbacks everywhere or per post type; hide com
 Install: upload the zip, activate, then Settings > Disable Comments.
 
 Links: https://wpforgehub.com/product/disable-comments/
+
+---
+
+## 📸 Admin Preview
+
+<p align="center">
+  <img src="assets/screenshot-1.png" alt="ForgeHub Disable Comments WordPress Admin Settings" width="100%" />
+</p>
+
+---
+
+## 🔗 Links & Resources
+
+- **Plugin Page:** [https://wpforgehub.com/product/disable-comments/](https://wpforgehub.com/product/disable-comments/)
+- **Documentation & Help:** [wpforgehub.com/docs](https://wpforgehub.com/docs/)
+- **More Free WordPress Plugins:** [wpforgehub.com](https://wpforgehub.com/#products)
