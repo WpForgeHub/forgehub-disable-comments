@@ -50,6 +50,8 @@ if ( ! function_exists( 'wpfh_dsc_fs' ) ) {
 						'first-path' => 'options-general.php?page=forgehub-disable-comments',
 					),
 				) );
+				// Freemius forbids uninstall.php in premium builds; use its after_uninstall hook there.
+				$wpfh_dsc_fs->add_action( 'after_uninstall', 'wpfh_dsc_uninstall_cleanup' );
 			} else {
 				$wpfh_dsc_fs = new class {
 					public function can_use_premium_code() {
@@ -68,6 +70,13 @@ if ( ! function_exists( 'wpfh_dsc_fs' ) ) {
 	}
 
 	wpfh_dsc_fs();
+}
+
+/**
+ * Removes plugin options (Freemius premium build; free build uses uninstall.php).
+ */
+function wpfh_dsc_uninstall_cleanup() {
+	delete_option( 'wpfh_dsc_settings' );
 }
 
 /**
